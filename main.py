@@ -8,6 +8,7 @@ class Alojamiento(KnowledgeEngine):
   @DefFacts()
   def set_turista(self, _per, _pre, _est):
     yield turistas(persona = _per, presupuesto = _pre, estadia = _est)
+    self.alo_type = None
   
   @DefFacts()
   def init_sequence(self):
@@ -61,11 +62,27 @@ class Turista():
 
     self.estadia = estadia
 
-# Pantalla Principal
+# Definicion de la clase servicios
+class Servicio():
+  def __init__(self, bpw, est, mas, erl, ing, pis, tar, dis, mat, ser) -> None:
+    self.bpw = bpw
+    self.est = est
+    self.mas = mas
+    self.erl = erl
+    self.ing = ing
+    self.pis = pis
+    self.tar = tar
+    self.dis = dis
+    self.mat = mat
+    self.ser = ser
+
+# Pantalla de Inicio - Ingreso de Datos
 class InputPanel(wx.Panel):
   def __init__(self, parent):
     wx.Panel.__init__(self, parent = parent)
+
     layout_main = wx.BoxSizer(wx.VERTICAL) 
+
     layout_child1 = wx.BoxSizer(wx.VERTICAL)
     layout_child2 = wx.BoxSizer(wx.VERTICAL)
     layout_child3 = wx.BoxSizer(wx.VERTICAL)
@@ -86,7 +103,11 @@ class InputPanel(wx.Panel):
     layout_child14 = wx.BoxSizer(wx.VERTICAL)
     layout_child15 = wx.BoxSizer(wx.HORIZONTAL)
 
-    # Label cantidad de personas
+    layout_child16 = wx.BoxSizer(wx.VERTICAL)
+    layout_child17 = wx.BoxSizer(wx.VERTICAL)
+    layout_child18 = wx.BoxSizer(wx.HORIZONTAL)
+
+    # Cantidad de personas
     self.txt_per = wx.StaticText(self, label = 'Cantidad de personas', style = wx.ALIGN_LEFT)
     self.spn_per = wx.SpinCtrl(self, value = '1')
 
@@ -94,7 +115,7 @@ class InputPanel(wx.Panel):
     layout_child1.Add(self.spn_per, 0, wx.ALL | wx.EXPAND, 5)
     layout_main.Add(layout_child1, 0, wx.ALL | wx.EXPAND, 5)
 
-    # Label presupuesto
+    # Presupuesto
     self.txt_pre = wx.StaticText(self, label = 'Presupuesto', style = wx.ALIGN_LEFT)
     self.spn_pre = wx.SpinCtrl(self, value = '10000')
 
@@ -102,7 +123,7 @@ class InputPanel(wx.Panel):
     layout_child2.Add(self.spn_pre, 0, wx.ALL | wx.EXPAND, 5)
     layout_main.Add(layout_child2, 0, wx.ALL | wx.EXPAND, 5)
 
-    # Label tiempo de estadía
+    # Tiempo de estadía
     self.txt_est = wx.StaticText(self, label = 'Tiempo de Estadía', style = wx.ALIGN_LEFT)
     self.spn_est = wx.SpinCtrl(self, value = '1')
 
@@ -143,14 +164,76 @@ class InputPanel(wx.Panel):
     layout_child12.Add(layout_child11, 1, wx.ALL | wx.EXPAND, 5)
     layout_main.Add(layout_child12, 0, wx.ALL | wx.EXPAND, 5)
 
+    # Checkbox TAR - DIS
+    self.cbx_tar = wx.CheckBox(self, label = "Pago con Tarjeta")
+    layout_child13.Add(self.cbx_tar, 0, wx.LEFT, 5)
+
+    self.cbx_dis = wx.CheckBox(self, label = "Acc. para Personas Discapacitadas")
+    layout_child14.Add(self.cbx_dis, 0, wx.LEFT, 5)
+
+    layout_child15.Add(layout_child13, 1, wx.ALL | wx.EXPAND, 5)
+    layout_child15.Add(layout_child14, 1, wx.ALL | wx.EXPAND, 5)
+    layout_main.Add(layout_child15, 0, wx.ALL | wx.EXPAND, 5)
+
+    # Checkbox MAT - SER
+    self.cbx_mat = wx.CheckBox(self, label = "Solo Matrimonio")
+    layout_child16.Add(self.cbx_mat, 0, wx.LEFT, 5)
+
+    self.cbx_ser = wx.CheckBox(self, label = "Otros Servicios")
+    layout_child17.Add(self.cbx_ser, 0, wx.LEFT, 5)
+
+    layout_child18.Add(layout_child16, 1, wx.ALL | wx.EXPAND, 5)
+    layout_child18.Add(layout_child17, 1, wx.ALL | wx.EXPAND, 5)
+    layout_main.Add(layout_child18, 0, wx.ALL | wx.EXPAND, 5)
+    
     self.SetSizer(layout_main)
 
-# Tamaño pantalla
+class ResultPanel(wx.Panel):
+  def __init__(self, parent):
+    wx.Panel.__init__(self, parent = parent)
+
+
+# Principal
 class MainWindow(wx.Frame):
   def __init__(self):
     super().__init__(parent = None, size = (500, 450), title = 'Inicio')
-
+    
     self.pnl_inicio = InputPanel(self)
+    #self.pnl_resultado = ResultPanel(self)
+
+  # Metodo para cambiar de ventana
+  def onSwitchPanels(self, event):
+    if self.pnl_inicio.IsShown():
+      # Determinar tipo de turista
+      self.miTurista = self.ObtenerTurista()
+      # Obtener servicios
+      self.miServicio = self.ObtenerServico()
+
+
+  # Metodo para obtener los datos del turista ingresado
+  def ObtenerTurista(self):
+    per_pnl = self.pnl_inicio.spn_per.GetValue()
+    pre_pnl = self.pnl_inicio.spn_pre.GetValue()
+    est_pnl = self.pnl_inicio.spn_est.GetValue()
+
+    tur = Turista(per_pnl, pre_pnl, est_pnl)
+    return tur
+  
+  def ObtenerServico(self):
+    bpw_cbx = self.pnl_inicio.cbx_bpw.IsChecked()
+    est_cbx = self.pnl_inicio.cbx_est.IsChecked()
+    mas_cbx = self.pnl_inicio.cbx_mas.IsChecked()
+    erl_cbx = self.pnl_inicio.cbx_erl.IsChecked()
+    ing_cbx = self.pnl_inicio.cbx_ing.IsChecked()
+    pis_cbx = self.pnl_inicio.cbx_pis.IsChecked()
+    tar_cbx = self.pnl_inicio.cbx_tar.IsChecked()
+    dis_cbx = self.pnl_inicio.cbx_dis.IsChecked()
+    mat_cbx = self.pnl_inicio.cbx_mat.IsChecked()
+    ser_cbx = self.pnl_inicio.cbx_ser.IsChecked()
+
+    ser = Servicio(bpw_cbx, est_cbx, mas_cbx, erl_cbx, ing_cbx, pis_cbx, tar_cbx, dis_cbx, mat_cbx, ser_cbx)
+    return ser
+
 
 # Definición de la llamada de aplicacion
 if __name__ == '__main__':
