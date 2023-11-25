@@ -4,48 +4,214 @@ from experta import *
 class turistas(Fact):
   pass
 
+class servicios(Fact):
+  pass
+
 class Alojamiento(KnowledgeEngine):
   @DefFacts()
   def set_turista(self, _per, _pre, _est):
     yield turistas(persona = _per, presupuesto = _pre, estadia = _est)
-    self.alo_type = None
-  
+    self.t_type = None
+
+  @DefFacts()
+  def set_servicio(self, _bpw, _est, _mas, _erl, _ing, _pis, _tar, _dis, _mat, _ser):
+    yield servicios(bpwRule = _bpw, estRule = _est, masRule = _mas, erlRule = _erl, ingRule = _ing, pisRule = _pis, tarRule = _tar, disRule = _dis, matRule = _mat, serRule = _ser)
+    self.s_type = None
+
   @DefFacts()
   def init_sequence(self):
-    yield Fact()
-
+    yield Fact(alojamiento = 'TA01')
+    yield Fact(alojamiento = 'TA02')
+    yield Fact(alojamiento = 'TA03')
+    yield Fact(alojamiento = 'TA04')
+    yield Fact(alojamiento = 'TA05')
+    yield Fact(alojamiento = 'TA06')
+    yield Fact(alojamiento = 'TA07')
+    yield Fact(alojamiento = 'TA08')
+    yield Fact(alojamiento = 'TA09')
+    yield Fact(alojamiento = 'TA10')
+    yield Fact(alojamiento = 'TA11')
+    yield Fact(alojamiento = 'TA12')
+    yield Fact(alojamiento = 'TA13')
+    yield Fact(alojamiento = 'TA14')
+    yield Fact(alojamiento = 'TA15')
+    yield Fact(alojamiento = 'TA16')
+    yield Fact(alojamiento = 'TA17')
+    yield Fact(alojamiento = 'TA18')
+    yield Fact(alojamiento = 'TA19')
+    self.a_type = None
+    
   # Definición de reglas  
+  # Turistas
   @Rule (turistas(persona = 'PER1', presupuesto = 'PRB', estadia = 'EST1'))
   def turist1(self):
     self.declare(Fact(turist = 'TUR1'))
   
   @Rule (turistas(persona = 'PER2', presupuesto = 'PRB', estadia = 'EST2'))
-  def turist1(self):
+  def turist2(self):
     self.declare(Fact(turist = 'TUR2'))
 
   @Rule (turistas(persona = 'PER2', presupuesto = 'PRM', estadia = 'EST1'))
-  def turist1(self):
+  def turist3(self):
     self.declare(Fact(turist = 'TUR3'))
 
   @Rule (turistas(persona = 'PER2', presupuesto = 'PRM', estadia = 'EST2'))
-  def turist1(self):
+  def turist4(self):
     self.declare(Fact(turist = 'TUR4'))
 
   @Rule (turistas(persona = 'PER1', presupuesto = 'PRM', estadia = 'EST3'))
-  def turist1(self):
+  def turist5(self):
     self.declare(Fact(turist = 'TUR5'))
   
   @Rule (turistas(persona = 'PER1', presupuesto = 'PRA', estadia = 'EST1'))
-  def turist1(self):
+  def turist6(self):
     self.declare(Fact(turist = 'TUR6'))
 
   @Rule (turistas(persona = 'PER3', presupuesto = 'PRA', estadia = 'EST2'))
-  def turist1(self):
+  def turist7(self):
     self.declare(Fact(turist = 'TUR7'))
 
   @Rule (turistas(persona = 'PER3', presupuesto = 'PRA', estadia = 'EST3'))
-  def turist1(self):
+  def turist8(self):
     self.declare(Fact(turist = 'TUR8'))
+
+  # Servicios
+  @Rule (servicios(bpwRule = 'BPW', estRule = 'EST', masRule = 'MAS'))
+  def service1(self):
+    self.declare(Fact(service = 'SER1'))
+
+  @Rule (servicios(masRule = 'MAS', disRule = 'DIS', serRule = 'SER'))
+  def service2(self):
+    self.declare(Fact(service = 'SER2'))
+  
+  @Rule (servicios(bpwRule = 'BPW', pisRule = 'PIS'))
+  def service3(self):
+    self.declare(Fact(service = 'SER3'))
+
+  @Rule (servicios(matRule = 'MAT', serRule = 'SER'))
+  def service4(self):
+    self.declare(Fact(service = 'SER4'))
+
+  @Rule (servicios(estRule = 'EST', tarRule = 'TAR'))
+  def service5(self):
+    self.declare(Fact(service = 'SER5'))
+
+  @Rule (servicios(masRule = 'MAS', ingRule = 'ING'))
+  def service6(self):
+    self.declare(Fact(service = 'SER6'))
+
+  @Rule (servicios(estRule = 'EST', erlRule = 'ERL'))
+  def service7(self):
+    self.declare(Fact(service = 'SER7'))
+
+  @Rule (servicios(tarRule = 'TAR', serRule = 'SER'))
+  def service8(self):
+    self.declare(Fact(service = 'SER8'))
+
+  @Rule (servicios(bpwRule = 'BPW'))
+  def service9(self):
+    self.declare(Fact(service = 'SER9'))
+
+  @Rule (servicios(estRule = 'EST'))
+  def service10(self):
+    self.declare(Fact(service = 'SER10'))
+
+  @Rule (servicios(masRule = 'MAS'))
+  def service11(self):
+    self.declare(Fact(service = 'SER11'))
+
+  @Rule (servicios(erlRule = 'ERL'))
+  def service12(self):
+    self.declare(Fact(service = 'SER12'))
+
+  @Rule (servicios(ingRule = 'ING'))
+  def service13(self):
+    self.declare(Fact(service = 'SER13'))
+
+  @Rule (servicios(disRule = 'DIS'))
+  def service14(self):
+    self.declare(Fact(service = 'SER14'))
+
+  @Rule (servicios(serRule = 'SER'))
+  def service15(self):
+    self.declare(Fact(service = 'SER15'))
+
+  # Alojamientos
+  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'SER1'), Fact(alojamiento = 'TA01')))
+  def print_alojamiento1(self):
+    self.a_type = 'TA01'
+  
+  @Rule (AND(Fact(turist = 'TUR2'), Fact(service = 'SER15'), Fact(alojamiento = 'TA02')))
+  def print_alojamiento2(self):
+    self.a_type = 'TA02'
+
+  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'SER14'), Fact(alojamiento = 'TA03')))
+  def print_alojamiento3(self):
+    self.a_type = 'TA03'
+
+  @Rule (AND(Fact(turist = 'TUR2'), Fact(service = 'SER9'), Fact(alojamiento = 'TA04')))
+  def print_alojamiento4(self):
+    self.a_type = 'TA04'
+
+  @Rule (AND(Fact(turist = 'TUR2'), Fact(service = 'SER11'), Fact(alojamiento = 'TA05')))
+  def print_alojamiento5(self):
+    self.a_type = 'TA05'
+
+  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER10'), Fact(alojamiento = 'TA06')))
+  def print_alojamiento6(self):
+    self.a_type = 'TA06'
+  
+  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER15'), Fact(alojamiento = 'TA07')))
+  def print_alojamiento7(self):
+    self.a_type = 'TA07'
+
+  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER3'), Fact(alojamiento = 'TA08')))
+  def print_alojamiento8(self):
+    self.a_type = 'TA08'
+
+  @Rule (AND(Fact(turist = 'TUR4'), Fact(service = 'SER15'), Fact(alojamiento = 'TA09')))
+  def print_alojamiento9(self):
+    self.a_type = 'TA09'
+
+  @Rule (AND(Fact(turist = 'TUR4'), Fact(service = 'SER2'), Fact(alojamiento = 'TA10')))
+  def print_alojamiento10(self):
+    self.a_type = 'TA10'
+
+  @Rule (AND(Fact(turist = 'TUR5'), Fact(service = 'SER15'), Fact(alojamiento = 'TA11')))
+  def print_alojamiento11(self):
+    self.a_type = 'TA11'
+
+  @Rule (AND(Fact(turist = 'TUR5'), Fact(service = 'SER4'), Fact(alojamiento = 'TA12')))
+  def print_alojamiento12(self):
+    self.a_type = 'TA12'
+
+  @Rule (AND(Fact(turist = 'TUR6'), Fact(service = 'SER5'), Fact(alojamiento = 'TA13')))
+  def print_alojamiento13(self):
+    self.a_type = 'TA13'
+
+  @Rule (AND(Fact(turist = 'TUR7'), Fact(service = 'SER6'), Fact(alojamiento = 'TA14')))
+  def print_alojamiento14(self):
+    self.a_type = 'TA14'
+
+  @Rule (AND(Fact(turist = 'TUR7'), Fact(service = 'SER7'), Fact(alojamiento = 'TA15')))
+  def print_alojamiento15(self):
+    self.a_type = 'TA15'
+  
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER8'), Fact(alojamiento = 'TA16')))
+  def print_alojamiento16(self):
+    self.a_type = 'TA16'
+
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER13'), Fact(alojamiento = 'TA17')))
+  def print_alojamiento17(self):
+    self.a_type = 'TA17'
+
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER11'), Fact(alojamiento = 'TA18')))
+  def print_alojamiento18(self):
+    self.a_type = 'TA18'
+
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER12'), Fact(alojamiento = 'TA19')))
+  def print_alojamiento19(self):
+    self.a_type = 'TA19'
 
 # Definición de la clase turista
 class Turista():
@@ -62,7 +228,7 @@ class Turista():
 
     self.estadia = estadia
 
-# Definicion de la clase servicios
+# Definición de la clase servicio
 class Servicio():
   def __init__(self, bpw, est, mas, erl, ing, pis, tar, dis, mat, ser) -> None:
     self.bpw = bpw
@@ -75,6 +241,14 @@ class Servicio():
     self.dis = dis
     self.mat = mat
     self.ser = ser
+
+# Definción de la clase alojamiento
+class Alojamiento():
+  def __init__(self, nombre, precio, tipo, imagen) -> None:
+    self.nombre = nombre
+    self.precio = precio
+    self.tipo = tipo
+    self.imagen = imagen
 
 # Pantalla de Inicio - Ingreso de Datos
 class InputPanel(wx.Panel):
@@ -188,6 +362,7 @@ class InputPanel(wx.Panel):
     
     self.SetSizer(layout_main)
 
+# Panel Recomendación Alojamiento
 class ResultPanel(wx.Panel):
   def __init__(self, parent):
     wx.Panel.__init__(self, parent = parent)
@@ -197,7 +372,8 @@ class ResultPanel(wx.Panel):
 class MainWindow(wx.Frame):
   def __init__(self):
     super().__init__(parent = None, size = (500, 450), title = 'Inicio')
-    
+    self.listadoAlojamiento = []
+
     self.pnl_inicio = InputPanel(self)
     #self.pnl_resultado = ResultPanel(self)
 
@@ -219,6 +395,7 @@ class MainWindow(wx.Frame):
     tur = Turista(per_pnl, pre_pnl, est_pnl)
     return tur
   
+  # Metodo para obtener los servicios seleccionados
   def ObtenerServico(self):
     bpw_cbx = self.pnl_inicio.cbx_bpw.IsChecked()
     est_cbx = self.pnl_inicio.cbx_est.IsChecked()
@@ -234,8 +411,11 @@ class MainWindow(wx.Frame):
     ser = Servicio(bpw_cbx, est_cbx, mas_cbx, erl_cbx, ing_cbx, pis_cbx, tar_cbx, dis_cbx, mat_cbx, ser_cbx)
     return ser
 
+  # Metodo para generar y carga de alojamiento
+  #def GenerarAlojamiento(self):
+    
 
-# Definición de la llamada de aplicacion
+# Definición principal de la aplicación
 if __name__ == '__main__':
   app = wx.App()
   app.locale = wx.Locale(wx.LANGUAGE_ENGLISH)
