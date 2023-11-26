@@ -7,7 +7,7 @@ class turistas(Fact):
 class servicios(Fact):
   pass
 
-class Alojamiento(KnowledgeEngine):
+class alojamiento_select(KnowledgeEngine):
   @DefFacts()
   def set_turista(self, _per, _pre, _est):
     yield turistas(persona = _per, presupuesto = _pre, estadia = _est)
@@ -224,23 +224,43 @@ class Turista():
     if (persona >= 5):
       self.persona = 'PER3'
     
-    self.presupuesto = presupuesto
+    if (presupuesto >= 10000 and presupuesto <= 25000):
+      self.presupuesto = 'PRB'
+    if (presupuesto >= 25001 and presupuesto <= 60000):
+      self.presupuesto = 'PRM'
+    if (presupuesto >= 60001 and presupuesto <= 100000):
+      self.presupuesto = 'PRA'
 
-    self.estadia = estadia
+    if (estadia >= 1 and estadia <= 4):
+      self.estadia = 'EST1'
+    if (estadia >= 5 and estadia <= 12):
+      self.estadia = 'EST2'
+    if (estadia > 12):
+      self.estadia = 'EST3'
 
 # Definición de la clase servicio
 class Servicio():
   def __init__(self, bpw, est, mas, erl, ing, pis, tar, dis, mat, ser) -> None:
-    self.bpw = bpw
-    self.est = est
-    self.mas = mas
-    self.erl = erl
-    self.ing = ing
-    self.pis = pis
-    self.tar = tar
-    self.dis = dis
-    self.mat = mat
-    self.ser = ser
+    if (bpw):
+      self.bpw = bpw
+    if (est):
+      self.est = est
+    if (mas):
+      self.mas = mas
+    if (erl):
+      self.erl = erl
+    if (ing):
+      self.ing = ing
+    if (pis):
+      self.pis = pis
+    if (tar):
+      self.tar = tar
+    if (dis):
+      self.dis = dis
+    if (mat):
+      self.mat = mat
+    if (ser):
+      self.ser = ser
 
 # Definción de la clase alojamiento
 class Alojamiento():
@@ -373,6 +393,8 @@ class MainWindow(wx.Frame):
   def __init__(self):
     super().__init__(parent = None, size = (500, 450), title = 'Inicio')
     self.listadoAlojamiento = []
+    # Instancio la base de conocimiento
+    self.alojamiento_recomendado = alojamiento_select()
 
     self.pnl_inicio = InputPanel(self)
     #self.pnl_resultado = ResultPanel(self)
@@ -380,10 +402,11 @@ class MainWindow(wx.Frame):
   # Metodo para cambiar de ventana
   def onSwitchPanels(self, event):
     if self.pnl_inicio.IsShown():
-      # Determinar tipo de turista
-      self.miTurista = self.ObtenerTurista()
-      # Obtener servicios
-      self.miServicio = self.ObtenerServico()
+      self.miTurista = self.ObtenerTurista() # Obtener Turista
+      self.miServicio = self.ObtenerServico() # Obtener Servicio
+      # Obtener Alojamiento
+      self.alojamiento_recomendado.a_type = None
+      self.alojamiento_recomendado.reset()
 
 
   # Metodo para obtener los datos del turista ingresado
