@@ -7,6 +7,7 @@ class turistas(Fact):
 class servicios(Fact):
   pass
 
+# Base de Conocimiento Alojamiento
 class alojamiento_select(KnowledgeEngine):
   @DefFacts()
   def set_turista(self, _per, _pre, _esa):
@@ -76,123 +77,142 @@ class alojamiento_select(KnowledgeEngine):
     self.declare(Fact(turist = 'TUR8'))
 
   # Servicios
-  @Rule (servicios(bpwRule = 'BPW'))
+  @Rule (servicios(bpwRule = 'BPW', estRule = 'EST', masRule = 'MAS', erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
   def service1(self):
-    self.declare(Fact(service = 'BPW'))
-
-  @Rule (servicios(estRule = 'EST'))
+    self.declare(Fact(service = 'SER1'))
+  
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = 'MAS', erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = 'DIS', matRule = None, serRule = 'SER'))
   def service2(self):
-    self.declare(Fact(service = 'EST'))
-
-  @Rule (servicios(masRule = 'MAS'))
+    self.declare(Fact(service = 'SER2'))
+  
+  @Rule (servicios(bpwRule = 'BPW', estRule = None, masRule = None, erlRule = None, ingRule = None, pisRule = 'PIS', tarRule = None, disRule = None, matRule = None, serRule = None))
   def service3(self):
-    self.declare(Fact(service = 'MAS'))
+    self.declare(Fact(service = 'SER3'))
 
-  @Rule (servicios(erlRule = 'ERL'))
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = None, erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = 'MAT', serRule = 'SER'))
   def service4(self):
-    self.declare(Fact(service = 'ERL'))
+    self.declare(Fact(service = 'SER4'))
 
-  @Rule (servicios(ingRule = 'ING'))
+  @Rule (servicios(bpwRule = None, estRule = 'EST', masRule = None, erlRule = None, ingRule = None, pisRule = None, tarRule = 'TAR', disRule = None, matRule = None, serRule = None))
   def service5(self):
-    self.declare(Fact(service = 'ING'))
+    self.declare(Fact(service = 'SER5'))
 
-  @Rule (servicios(pisRule = 'PIS'))
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = 'MAS', erlRule = None, ingRule = 'ING', pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
   def service6(self):
-    self.declare(Fact(service = 'PIS'))
+    self.declare(Fact(service = 'SER6'))
 
-  @Rule (servicios(tarRule = 'TAR'))
+  @Rule (servicios(bpwRule = None, estRule = 'EST', masRule = None, erlRule = 'ERL', ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
   def service7(self):
-    self.declare(Fact(service = 'TAR'))
-  
-  @Rule (servicios(disRule = 'DIS'))
-  def service8(self):
-    self.declare(Fact(service = 'DIS'))
-  
-  @Rule (servicios(matRule = 'MAT'))
-  def service9(self):
-    self.declare(Fact(service = 'MAT'))
+    self.declare(Fact(service = 'SER7'))
 
-  @Rule (servicios(serRule = 'SER'))
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = None, erlRule = None, ingRule = None, pisRule = None, tarRule = 'TAR', disRule = None, matRule = None, serRule = 'SER'))
+  def service8(self):
+    self.declare(Fact(service = 'SER8'))
+
+  @Rule (servicios(bpwRule = 'BPW', estRule = None, masRule = None, erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
+  def service9(self):
+    self.declare(Fact(service = 'SER9'))
+
+  @Rule (servicios(bpwRule = None, estRule = 'EST', masRule = None, erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
   def service10(self):
-    self.declare(Fact(service = 'SER'))
+    self.declare(Fact(service = 'SER10'))
+
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = 'MAS', erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
+  def service11(self):
+    self.declare(Fact(service = 'SER11'))
+
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = None, erlRule = 'ERL', ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
+  def service12(self):
+    self.declare(Fact(service = 'SER12'))
+
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = None, erlRule = None, ingRule = 'ING', pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = None))
+  def service13(self):
+    self.declare(Fact(service = 'SER13'))
+    
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = None, erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = 'DIS', matRule = None, serRule = None))
+  def service14(self):
+    self.declare(Fact(service = 'SER14'))
+
+  @Rule (servicios(bpwRule = None, estRule = None, masRule = None, erlRule = None, ingRule = None, pisRule = None, tarRule = None, disRule = None, matRule = None, serRule = 'SER'))
+  def service15(self):
+    self.declare(Fact(service = 'SER15'))
 
   # Alojamientos
-  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'BPW'), Fact(service = 'EST'), Fact(service = 'MAS'), Fact(alojamiento = 'TA01')))
+  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'SER1'), Fact(alojamiento = 'TA01')))
   def print_alojamiento1(self):
     self.a_type = 'TA01'
   
-  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'SER'), Fact(alojamiento = 'TA02')))
+  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'SER15'), Fact(alojamiento = 'TA02')))
   def print_alojamiento2(self):
     self.a_type = 'TA02'
 
-  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'DIS'), Fact(alojamiento = 'TA03')))
+  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'SER14'), Fact(alojamiento = 'TA03')))
   def print_alojamiento3(self):
     self.a_type = 'TA03'
 
-  @Rule (AND(Fact(turist = 'TUR2'), Fact(service = 'BPW'), Fact(alojamiento = 'TA04')))
+  @Rule (AND(Fact(turist = 'TUR2'), Fact(service = 'SER9'), Fact(alojamiento = 'TA04')))
   def print_alojamiento4(self):
     self.a_type = 'TA04'
 
-  @Rule (AND(Fact(turist = 'TUR2'), Fact(service = 'MAS'), Fact(alojamiento = 'TA05')))
+  @Rule (AND(Fact(turist = 'TUR2'), Fact(service = 'SER11'), Fact(alojamiento = 'TA05')))
   def print_alojamiento5(self):
     self.a_type = 'TA05'
 
-  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'EST'), Fact(alojamiento = 'TA06')))
+  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER10'), Fact(alojamiento = 'TA06')))
   def print_alojamiento6(self):
     self.a_type = 'TA06'
   
-  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER'), Fact(alojamiento = 'TA07')))
+  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER15'), Fact(alojamiento = 'TA07')))
   def print_alojamiento7(self):
     self.a_type = 'TA07'
 
-  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'BPW'), Fact(service = 'PIS'), Fact(alojamiento = 'TA08')))
+  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER3'), Fact(alojamiento = 'TA08')))
   def print_alojamiento8(self):
     self.a_type = 'TA08'
 
-  @Rule (AND(Fact(turist = 'TUR4'), Fact(service = 'SER'), Fact(alojamiento = 'TA09')))
+  @Rule (AND(Fact(turist = 'TUR4'), Fact(service = 'SER15'), Fact(alojamiento = 'TA09')))
   def print_alojamiento9(self):
     self.a_type = 'TA09'
 
-  @Rule (AND(Fact(turist = 'TUR4'), Fact(service = 'MAS'), Fact(service = 'DIS'), Fact(service = 'SER'), Fact(alojamiento = 'TA10')))
+  @Rule (AND(Fact(turist = 'TUR4'), Fact(service = 'SER2'), Fact(alojamiento = 'TA10')))
   def print_alojamiento10(self):
     self.a_type = 'TA10'
 
-  @Rule (AND(Fact(turist = 'TUR5'), Fact(service = 'SER'), Fact(alojamiento = 'TA11')))
+  @Rule (AND(Fact(turist = 'TUR5'), Fact(service = 'SER15'), Fact(alojamiento = 'TA11')))
   def print_alojamiento11(self):
     self.a_type = 'TA11'
   
-  @Rule (AND(Fact(turist = 'TUR5'), Fact(service = 'MAT'), Fact(service = 'SER'), Fact(alojamiento = 'TA12')))
+  @Rule (AND(Fact(turist = 'TUR5'), Fact(service = 'SER4'), Fact(alojamiento = 'TA12')))
   def print_alojamiento12(self):
     self.a_type = 'TA12'
   
-  @Rule (AND(Fact(turist = 'TUR6'), Fact(service = 'EST'), Fact(service = 'TAR'), Fact(alojamiento = 'TA13')))
+  @Rule (AND(Fact(turist = 'TUR6'), Fact(service = 'SER5'), Fact(alojamiento = 'TA13')))
   def print_alojamiento13(self):
     self.a_type = 'TA13'
 
-  @Rule (AND(Fact(turist = 'TUR7'), Fact(service = 'MAS'), Fact(service = 'ING'),Fact(alojamiento = 'TA14')))
+  @Rule (AND(Fact(turist = 'TUR7'), Fact(service = 'SER6'),Fact(alojamiento = 'TA14')))
   def print_alojamiento14(self):
     self.a_type = 'TA14'
 
-  @Rule (AND(Fact(turist = 'TUR7'), Fact(service = 'EST'), Fact(service = 'ERL'), Fact(alojamiento = 'TA15')))
+  @Rule (AND(Fact(turist = 'TUR7'), Fact(service = 'SER7'), Fact(alojamiento = 'TA15')))
   def print_alojamiento15(self):
     self.a_type = 'TA15'
 
-  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'TAR'), Fact(service = 'SER'), Fact(alojamiento = 'TA16')))
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER8'), Fact(alojamiento = 'TA16')))
   def print_alojamiento16(self):
     self.a_type = 'TA16'
   
-  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'ING'), Fact(alojamiento = 'TA17')))
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER13'), Fact(alojamiento = 'TA17')))
   def print_alojamiento17(self):
     self.a_type = 'TA17'
 
-  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'MAS'), Fact(alojamiento = 'TA18')))
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER11'), Fact(alojamiento = 'TA18')))
   def print_alojamiento18(self):
     self.a_type = 'TA18'
 
-  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'ERL'), Fact(alojamiento = 'TA19')))
+  @Rule (AND(Fact(turist = 'TUR8'), Fact(service = 'SER12'), Fact(alojamiento = 'TA19')))
   def print_alojamiento19(self):
     self.a_type = 'TA19'
-  
 
 # Definición de la clase turista
 class Turista():
