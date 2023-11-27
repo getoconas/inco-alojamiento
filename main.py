@@ -611,7 +611,7 @@ class MainWindow(wx.Frame):
     self.listadoAlojamiento.append(Alojamiento('Killari', 'Hotel', '26000 a 60000', 'Sarmineto S/N', 3884908023, wx.Image('img/Hotel/Hotel_Killari.png'), 'TA08'))
     # TA09
     self.listadoAlojamiento.append(Alojamiento('Hotel Cactus Cerros', 'Hotel', '38000', 'Av. San Martín S/N', 3884757792, wx.Image('img/Hotel/Hotel_Cactus_Cerro.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('La Valentina', 'Hotel', 'Lavalle S/N', 3884560444, wx.Image('img/Hotel/La_Valentina.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('La Valentina', 'Hotel', '46000', 'Lavalle S/N', 3884560444, wx.Image('img/Hotel/La_Valentina.png'), 'TA09'))
     self.listadoAlojamiento.append(Alojamiento('Las Lavandas Purmamarca', 'Hotel', '26000 a 60000', 'Av. San Martín 703', 3884103672, wx.Image('img/Hotel/Las_Lavandas_Purmamarca.png'), 'TA09'))
     self.listadoAlojamiento.append(Alojamiento('MAI JAII', 'Hotel', '26000 a 60000', 'RN52 KM 2', 3884598726, wx.Image('img/Hotel/MAI_JAII.png'), 'TA09'))
     self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', 'Hotel', '26000 a 60000', 'Sarmiento esq. Lavalle', 3884336144, wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA09'))
@@ -645,13 +645,13 @@ class MainWindow(wx.Frame):
     # TA17
     self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA17'))
     # TA18
-    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca', wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA18'))
-    self.listadoAlojamiento.append(Alojamiento('El Cielo de Purmamarca', wx.Image('img/Hotel/El_Cielo_de_Purmamarca.png'), 'TA18'))
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA18'))
+    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca','Hotel', '61000 a 100000', 'Pasaje Siete Colores S/N', 1155986605, wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA18'))
+    self.listadoAlojamiento.append(Alojamiento('El Cielo de Purmamarca', 'Hotel', '61000 a 100000', 'Av. San Martín 703', 3884908023, wx.Image('img/Hotel/El_Cielo_de_Purmamarca.png'), 'TA18'))
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA18'))
     # TA19
-    self.listadoAlojamiento.append(Alojamiento('La Comarca', wx.Image('img/Hotel/La_Comarca.png'), 'TA19'))
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA19'))
-    self.listadoAlojamiento.append(Alojamiento('Pumahuasi Hotel Boutique', wx.Image('img/Hotel/Pumahuasi_Hotel_Boutique.png'), 'TA19'))
+    self.listadoAlojamiento.append(Alojamiento('La Comarca', 'Hotel', '61000 a 100000', 'Ex RN 52 - KM 4.2', 3884908001, wx.Image('img/Hotel/La_Comarca.png'), 'TA19'))
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA18'))
+    self.listadoAlojamiento.append(Alojamiento('Pumahuasi Hotel Boutique', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3885189090, wx.Image('img/Hotel/Pumahuasi_Hotel_Boutique.png'), 'TA19'))
 
 # Definición principal de la aplicación
 if __name__ == '__main__':
