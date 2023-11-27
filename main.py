@@ -591,14 +591,12 @@ class MainWindow(wx.Frame):
     self.listadoAlojamiento.append(Alojamiento('La Posada de Candelaria', 'Hostal', '16000', 'Libertad S/N', 3885879786, wx.Image('img/Hostel/La_Posada_de_la_Candelaria.png'), 'TA02'))
     self.listadoAlojamiento.append(Alojamiento('Pumac', 'Hostal', '20500', 'Pantaleón Cruz S/N', 3885089048, wx.Image('img/Hostel/Pumac.png'), 'TA02'))
     # TA03
-    self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA03'))
-    self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA03'))
-    self.listadoAlojamiento.append(Alojamiento('Posada El Molle', wx.Image('img/Hostel/Posada_el_Molle.png'), 'TA03'))
+    self.listadoAlojamiento.append(Alojamiento('Posada El Molle', 'Hostal', '27000', 'Florida 203', 3885043867, wx.Image('img/Hostel/Posada_el_Molle.png'), 'TA03'))
     # TA04
-    self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA04'))
-    self.listadoAlojamiento.append(Alojamiento('El Rincón del Oso', wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA04'))
-    self.listadoAlojamiento.append(Alojamiento('Pumac', wx.Image('img/Hostel/Pumac.png'), 'TA04'))
-    self.listadoAlojamiento.append(Alojamiento('INTI KAY', wx.Image('img/Hostel/INTI_KAY.png'), 'TA04'))
+    self.listadoAlojamiento.append(Alojamiento('Mama Coca', 'Hostal', '10000 a 25000', 'Libertad S/N', 3884908434, wx.Image('img/Hostel/MamaCoca.png'), 'TA04'))
+    self.listadoAlojamiento.append(Alojamiento('El Rincón del Oso', 'Hostal', '10000 a 25000', 'Florida 209', 3886049255, wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA04'))
+    self.listadoAlojamiento.append(Alojamiento('Pumac', 'Hostal', '20500', 'Pantaleón Cruz S/N', 3885089048, wx.Image('img/Hostel/Pumac.png'), 'TA04'))
+    self.listadoAlojamiento.append(Alojamiento('INTI KAY', 'Hostal', '10000 a 25000', 'Florida esq. Belgrano', 3884076204, wx.Image('img/Hostel/INTI_KAY.png'), 'TA04'))
     # TA05
     self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA05'))
     self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA05'))
