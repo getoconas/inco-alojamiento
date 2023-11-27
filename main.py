@@ -1,6 +1,10 @@
 import wx
 from experta import *
 
+import src.controller.turista as turista
+import src.controller.servicio as servicio
+from src.data.alojamiento import listadoAlojamiento
+
 class turistas(Fact):
   pass
 
@@ -214,86 +218,6 @@ class alojamiento_select(KnowledgeEngine):
   def print_alojamiento19(self):
     self.a_type = 'TA19'
 
-# Definición de la clase turista
-class Turista():
-  def __init__(self, persona, presupuesto, estadia) -> None:
-    
-    if (persona >= 1 and persona <= 2):
-      self.persona = 'PER1'
-    if (persona >= 3 and persona <= 4):
-      self.persona = 'PER2'
-    if (persona >= 5):
-      self.persona = 'PER3'
-    
-    if (presupuesto >= 10000 and presupuesto <= 25000):
-      self.presupuesto = 'PRB'
-    if (presupuesto >= 25001 and presupuesto <= 60000):
-      self.presupuesto = 'PRM'
-    if (presupuesto >= 60001 and presupuesto <= 100000):
-      self.presupuesto = 'PRA'
-
-    if (estadia >= 1 and estadia <= 4):
-      self.estadia = 'EST1'
-    if (estadia >= 5 and estadia <= 12):
-      self.estadia = 'EST2'
-    if (estadia > 12):
-      self.estadia = 'EST3'
-
-# Definición de la clase servicio
-class Servicio():
-  def __init__(self, bpw, est, mas, erl, ing, pis, tar, dis, mat, ser) -> None:
-    if (bpw):
-      self.bpw = 'BPW'
-    else:
-      self.bpw = None
-    if (est):
-      self.est = 'EST'
-    else:
-      self.est = None
-    if (mas):
-      self.mas = 'MAS'
-    else:
-      self.mas = None
-    if (erl):
-      self.erl = 'ERL'
-    else:
-      self.erl = None
-    if (ing):
-      self.ing = 'ING'
-    else:
-      self.ing = None
-    if (pis):
-      self.pis = 'PIS'
-    else:
-      self.pis = None
-    if (tar):
-      self.tar = 'TAR'
-    else:
-      self.tar = None
-    if (dis):
-      self.dis = 'DIS'
-    else:
-      self.dis = None
-    if (mat):
-      self.mat = 'MAT'
-    else:
-      self.mat = None
-    if (ser):
-      self.ser = 'SER'
-    else:
-      self.ser = None
-
-# Definción de la clase alojamiento
-class Alojamiento():
-  def __init__(self, nombre, categoria, precio, direccion, telefono, imagen, tipo) -> None:
-    self.nombre = nombre
-    self.categoria = categoria
-    self.precio = precio
-    self.direccion = direccion
-    self.telefono = telefono
-    self.imagen = imagen
-    self.tipo = tipo
-
 # Pantalla de Inicio - Ingreso de Datos
 class InputPanel(wx.Panel):
   def __init__(self, parent):
@@ -486,8 +410,8 @@ class ResultPanel(wx.Panel):
 class MainWindow(wx.Frame):
   def __init__(self):
     super().__init__(parent = None, size = (500, 450), title = 'Inicio')
-    self.listadoAlojamiento = []
-    self.GenerarAlojamiento()
+    # Obtengo el listado de alojamientos
+    self.listadoAlojamiento = listadoAlojamiento
     # Instancio la base de conocimiento
     self.alojamiento_recomendado = alojamiento_select()
 
@@ -574,14 +498,13 @@ class MainWindow(wx.Frame):
     self.pnl_resultado.OnSelect(event = wx.EVT_TEXT)
     self.pnl_resultado.imageBitmap.SetBitmap(wx.BitmapFromImage(self.pnl_resultado.listadoRecomendacion[0].imagen))
 
-
   # Metodo para obtener los datos del turista ingresado
   def ObtenerTurista(self):
     per_pnl = self.pnl_inicio.spn_per.GetValue()
     pre_pnl = self.pnl_inicio.spn_pre.GetValue()
     est_pnl = self.pnl_inicio.spn_est.GetValue()
 
-    tur = Turista(per_pnl, pre_pnl, est_pnl)
+    tur = turista.Turista(per_pnl, pre_pnl, est_pnl)
     return tur
   
   # Metodo para obtener los servicios seleccionados
@@ -597,82 +520,9 @@ class MainWindow(wx.Frame):
     mat_cbx = self.pnl_inicio.cbx_mat.IsChecked()
     ser_cbx = self.pnl_inicio.cbx_ser.IsChecked()
 
-    ser = Servicio(bpw_cbx, est_cbx, mas_cbx, erl_cbx, ing_cbx, pis_cbx, tar_cbx, dis_cbx, mat_cbx, ser_cbx)
+    ser = servicio.Servicio(bpw_cbx, est_cbx, mas_cbx, erl_cbx, ing_cbx, pis_cbx, tar_cbx, dis_cbx, mat_cbx, ser_cbx)
     return ser
-
-  # Metodo para generar y carga de alojamiento
-  def GenerarAlojamiento(self):
-    # TA01
-    self.listadoAlojamiento.append(Alojamiento('Eco Cabaña', 'Cabaña', '10000 a 25000', 'Av. San Martín S/N', 3885108936, wx.Image('img/Cabana/Eco_Cabaña.png'), 'TA01'))
-    self.listadoAlojamiento.append(Alojamiento('Mirador del Virrey', 'Cabaña', '10000 a 25000', 'Ex Ruta 52 - KM 4,4 - Chalala', 3885904057, wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA01'))
-    # TA02
-    self.listadoAlojamiento.append(Alojamiento('Camping Coquena', 'Camping/Cabaña', '10000 a 25000', 'Av. San Martín S/N', 3885108936, wx.Image('img/Cabana/Camping_Coquena.png'), 'TA02'))
-    self.listadoAlojamiento.append(Alojamiento('Cabañas y Camping Familiar Rodolfo', 'Camping/Cabaña', '10000 a 25000', 'Ruta 52 S/N', 3884349307, wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA02'))
-    self.listadoAlojamiento.append(Alojamiento('La Posada de Candelaria', 'Hostal', '16000', 'Libertad S/N', 3885879786, wx.Image('img/Hostel/La_Posada_de_la_Candelaria.png'), 'TA02'))
-    self.listadoAlojamiento.append(Alojamiento('Pumac', 'Hostal', '20500', 'Pantaleón Cruz S/N', 3885089048, wx.Image('img/Hostel/Pumac.png'), 'TA02'))
-    # TA03
-    self.listadoAlojamiento.append(Alojamiento('Posada El Molle', 'Hostal', '27000', 'Florida 203', 3885043867, wx.Image('img/Hostel/Posada_el_Molle.png'), 'TA03'))
-    # TA04
-    self.listadoAlojamiento.append(Alojamiento('Mama Coca', 'Hostal', '10000 a 25000', 'Libertad S/N', 3884908434, wx.Image('img/Hostel/MamaCoca.png'), 'TA04'))
-    self.listadoAlojamiento.append(Alojamiento('El Rincón del Oso', 'Hostal', '10000 a 25000', 'Florida 209', 3886049255, wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA04'))
-    self.listadoAlojamiento.append(Alojamiento('Pumac', 'Hostal', '20500', 'Pantaleón Cruz S/N', 3885089048, wx.Image('img/Hostel/Pumac.png'), 'TA04'))
-    self.listadoAlojamiento.append(Alojamiento('INTI KAY', 'Hostal', '10000 a 25000', 'Florida esq. Belgrano', 3884076204, wx.Image('img/Hostel/INTI_KAY.png'), 'TA04'))
-    # TA05
-    self.listadoAlojamiento.append(Alojamiento('Mama Coca', 'Hostal', '10000 a 25000', 'Libertad S/N', 3884908434, wx.Image('img/Hostel/MamaCoca.png'), 'TA05'))
-    self.listadoAlojamiento.append(Alojamiento('Doña Velia', 'Hostal', '10000 a 25000', 'Florida S/N', 3884967488, wx.Image('img/Hostel/Doña_Velia.png'), 'TA05'))
-    self.listadoAlojamiento.append(Alojamiento('El Refugio de Noe', 'Hostal', '10000', 'Salta esq Gorriti', 3884803503, wx.Image('img/Hostel/El_Refugio_de_Noe.png'), 'TA05'))
-    # TA06
-    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', 'Hostería', '26000 a 60000', 'Av. San Martín S/N', 3884975583, wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA06'))
-    # TA07
-    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', 'Hotel', '26000 a 60000', 'San Ramón Ote 1265', 569822092395, wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA07'))
-    self.listadoAlojamiento.append(Alojamiento('La Pushka', 'Hostería', '26000 a 60000', 'Pasaje Santa Rosa S/N', 3885170350, wx.Image('img/Hosteria/La_Pushka.png'), 'TA07'))
-    self.listadoAlojamiento.append(Alojamiento('Wara Wara', 'Hostería', '26000 a 60000', 'Av. San Martín S/N', 3884780516, wx.Image('img/Hosteria/Wara_Wara.png'), 'TA07'))
-    # TA08
-    self.listadoAlojamiento.append(Alojamiento('Killari', 'Hotel', '26000 a 60000', 'Sarmineto S/N', 3884908023, wx.Image('img/Hotel/Hotel_Killari.png'), 'TA08'))
-    # TA09
-    self.listadoAlojamiento.append(Alojamiento('Hotel Cactus Cerros', 'Hotel', '38000', 'Av. San Martín S/N', 3884757792, wx.Image('img/Hotel/Hotel_Cactus_Cerro.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('La Valentina', 'Hotel', '46000', 'Lavalle S/N', 3884560444, wx.Image('img/Hotel/La_Valentina.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('Las Lavandas Purmamarca', 'Hotel', '26000 a 60000', 'Av. San Martín 703', 3884103672, wx.Image('img/Hotel/Las_Lavandas_Purmamarca.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('MAI JAII', 'Hotel', '26000 a 60000', 'RN52 KM 2', 3884598726, wx.Image('img/Hotel/MAI_JAII.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', 'Hotel', '26000 a 60000', 'Sarmiento esq. Lavalle', 3884336144, wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', 'Hostería', '26000 a 60000', 'Av. San Martín S/N', 3884975583, wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('La Casa Encantanda', 'Hostería', '26000 a 60000', 'Salta S/N', 3885825305, wx.Image('img/Hosteria/La_Casa_Encantada.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('La Pushka', 'Hosteria', '26000 a 60000', 'Pasaje Santa Rosa S/N', 3885170350, wx.Image('img/Hosteria/La_Pushka.png'), 'TA09'))
-    # TA10
-    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', 'Hotel', '26000 a 60000', 'San Ramón Ote 1265', 569822092395, wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA10'))
-    # TA11
-    self.listadoAlojamiento.append(Alojamiento('Los Agustinos', 'Hotel', '26000 a 60000', 'Lavalle S/N', 388505113, wx.Image('img/Hotel/Los_Agustinos.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', 'Hotel', '26000 a 60000', 'Sarmiento esq. Lavalle', 3884336144, wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('Las Vicuñas', 'Hotel', '26000 a 60000', 'Sarmiento 204', 3884612975, wx.Image('img/Hotel/Las_Vicuñas.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('El Viejo Algarrobo', 'Hostería', '26000 a 60000', 'Salta S/N', 3884908286, wx.Image('img/Hosteria/El_Viejo_Algarrobo.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('Del Amauta', 'Hostería', '26000 a 60000', 'Salta S/N', 3884908043, wx.Image('img/Hosteria/Del_Amauta.png'), 'TA11'))
-    # TA12
-    self.listadoAlojamiento.append(Alojamiento('Terrazas de la Posta', 'Hostería', '26000 a 60000', 'Pasaje Santa Rosa S/N', 3884571472, wx.Image('img/Hosteria/Terraza_La_Posta.png'), 'TA12'))
-    # TA13
-    self.listadoAlojamiento.append(Alojamiento('Huara Huasi', 'Hostería', '61000 a 100000', 'Ex Ruta 52 - KM 5 - Chalala', 3885811804, wx.Image('img/Hosteria/Huara_Huasi.png'), 'TA13'))
-    # TA14
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA14'))
-    # TA15
-    self.listadoAlojamiento.append(Alojamiento('El Manatial del Silencio', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884908081, wx.Image('img/Hotel/El_Manantial_del_Silencio.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('La Comarca', 'Hotel', '61000 a 100000', 'Ex RN 52 - KM 4.2', 3884908001, wx.Image('img/Hotel/La_Comarca.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('Marquez de Tojo', 'Hotel', '67000 a 100000', 'Santa Rosa 4', 3884116001, wx.Image('img/Hotel/Marquez_de_Tojo.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca','Hotel', '61000 a 100000', 'Pasaje Siete Colores S/N', 1155986605, wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('El Refugio de Coquena', 'Hotel', '61000 a 100000', 'Ex RN 52 - KM 3.4', 3884908025, wx.Image('img/Hotel/El_Refugio_de_Coquena.png'), 'TA15'))
-    # TA16
-    self.listadoAlojamiento.append(Alojamiento('Los Colorados Cabañas Botique', 'Cabañas', '61000 a 100000', 'El Chapacal 511, Paseo de los Colorados', 3884908182, wx.Image('img/Cabana/Los_Colorados.png'), 'TA16'))
-    self.listadoAlojamiento.append(Alojamiento('Azul Andino', 'Cabañas', '61000 a 100000', 'Sarmiento S/N', 1132773021, wx.Image('img/Cabana/Azul_Andino.png'), 'TA16'))
-    self.listadoAlojamiento.append(Alojamiento('La Reliquia', 'Hotel', '61000 a 100000', 'Pantaleon Cruz S/N', 3884908120, wx.Image('img/Hotel/La_Reliquia.png'), 'TA16'))
-    # TA17
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA17'))
-    # TA18
-    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca','Hotel', '61000 a 100000', 'Pasaje Siete Colores S/N', 1155986605, wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA18'))
-    self.listadoAlojamiento.append(Alojamiento('El Cielo de Purmamarca', 'Hotel', '61000 a 100000', 'Av. San Martín 703', 3884908023, wx.Image('img/Hotel/El_Cielo_de_Purmamarca.png'), 'TA18'))
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA18'))
-    # TA19
-    self.listadoAlojamiento.append(Alojamiento('La Comarca', 'Hotel', '61000 a 100000', 'Ex RN 52 - KM 4.2', 3884908001, wx.Image('img/Hotel/La_Comarca.png'), 'TA19'))
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA18'))
-    self.listadoAlojamiento.append(Alojamiento('Pumahuasi Hotel Boutique', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3885189090, wx.Image('img/Hotel/Pumahuasi_Hotel_Boutique.png'), 'TA19'))
-
+    
 # Definición principal de la aplicación
 if __name__ == '__main__':
   app = wx.App()
