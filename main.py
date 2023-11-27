@@ -606,26 +606,26 @@ class MainWindow(wx.Frame):
     # TA07
     self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', 'Hotel', '26000 a 60000', 'San Ramón Ote 1265', 569822092395, wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA07'))
     self.listadoAlojamiento.append(Alojamiento('La Pushka', 'Hostería', '26000 a 60000', 'Pasaje Santa Rosa S/N', 3885170350, wx.Image('img/Hosteria/La_Pushka.png'), 'TA07'))
-    self.listadoAlojamiento.append(Alojamiento('Wara Wara', '26000 a 60000', 'Av. San Martín S/N', 3884780516, wx.Image('img/Hosteria/Wara_Wara.png'), 'TA07'))
+    self.listadoAlojamiento.append(Alojamiento('Wara Wara', 'Hostería', '26000 a 60000', 'Av. San Martín S/N', 3884780516, wx.Image('img/Hosteria/Wara_Wara.png'), 'TA07'))
     # TA08
-    self.listadoAlojamiento.append(Alojamiento('Killari', wx.Image('img/Hotel/Hotel_Killari.png'), 'TA08'))
+    self.listadoAlojamiento.append(Alojamiento('Killari', 'Hotel', '26000 a 60000', 'Sarmineto S/N', 3884908023, wx.Image('img/Hotel/Hotel_Killari.png'), 'TA08'))
     # TA09
-    self.listadoAlojamiento.append(Alojamiento('Hotel Cactus Cerros', wx.Image('img/Hotel/Hotel_Cactus_Cerro.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('La Valentina', wx.Image('img/Hotel/La_Valentina.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('Las Lavandas Purmamarca', wx.Image('img/Hotel/Las_Lavandas_Purmamarca.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('MAI JAII', wx.Image('img/Hotel/MAI_JAII.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('La Casa Encantanda', wx.Image('img/Hosteria/La_Casa_Encantada.png'), 'TA09'))
-    self.listadoAlojamiento.append(Alojamiento('La Pushka', wx.Image('img/Hosteria/La_Pushka.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('Hotel Cactus Cerros', 'Hotel', '38000', 'Av. San Martín S/N', 3884757792, wx.Image('img/Hotel/Hotel_Cactus_Cerro.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('La Valentina', 'Hotel', 'Lavalle S/N', 3884560444, wx.Image('img/Hotel/La_Valentina.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('Las Lavandas Purmamarca', 'Hotel', '26000 a 60000', 'Av. San Martín 703', 3884103672, wx.Image('img/Hotel/Las_Lavandas_Purmamarca.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('MAI JAII', 'Hotel', '26000 a 60000', 'RN52 KM 2', 3884598726, wx.Image('img/Hotel/MAI_JAII.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', 'Hotel', '26000 a 60000', 'Sarmiento esq. Lavalle', 3884336144, wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', 'Hostería', '26000 a 60000', 'Av. San Martín S/N', 3884975583, wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('La Casa Encantanda', 'Hostería', '26000 a 60000', 'Salta S/N', 3885825305, wx.Image('img/Hosteria/La_Casa_Encantada.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('La Pushka', 'Hosteria', '26000 a 60000', 'Pasaje Santa Rosa S/N', 3885170350, wx.Image('img/Hosteria/La_Pushka.png'), 'TA09'))
     # TA10
-    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA10'))
+    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', 'Hotel', '26000 a 60000', 'San Ramón Ote 1265', 569822092395, wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA10'))
     # TA11
-    self.listadoAlojamiento.append(Alojamiento('Los Agustinos', wx.Image('img/Hotel/Los_Agustinos.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('Las Vicuñas', wx.Image('img/Hotel/Las_Vicuñas.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('El Viejo Algarrobo', wx.Image('img/Hosteria/El_Viejo_Algarrobo.png'), 'TA11'))
-    self.listadoAlojamiento.append(Alojamiento('Del Amauta', wx.Image('img/Hosteria/Del_Amauta.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Los Agustinos', 'Hotel', '26000 a 60000', 'Lavalle S/N', 388505113, wx.Image('img/Hotel/Los_Agustinos.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', 'Hotel', '26000 a 60000', 'Sarmiento esq. Lavalle', 3884336144, wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Las Vicuñas', 'Hotel', '26000 a 60000', 'Sarmiento 204', 3884612975, wx.Image('img/Hotel/Las_Vicuñas.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('El Viejo Algarrobo', 'Hostería', '26000 a 60000', 'Salta S/N', 3884908286, wx.Image('img/Hosteria/El_Viejo_Algarrobo.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Del Amauta', 'Hostería', '26000 a 60000', 'Salta S/N', 3884908043, wx.Image('img/Hosteria/Del_Amauta.png'), 'TA11'))
     # TA12
     self.listadoAlojamiento.append(Alojamiento('Terrazas de la Posta Purmamarca', wx.Image('img/Hosteria/Terraza_La_Posta.png'), 'TA11'))
     # TA13
