@@ -285,8 +285,12 @@ class Servicio():
 
 # Definción de la clase alojamiento
 class Alojamiento():
-  def __init__(self, nombre, imagen, tipo) -> None:
+  def __init__(self, nombre, categoria, precio, direccion, telefono, imagen, tipo) -> None:
     self.nombre = nombre
+    self.categoria = categoria
+    self.precio = precio
+    self.direccion = direccion
+    self.telefono = telefono
     self.imagen = imagen
     self.tipo = tipo
 
@@ -579,13 +583,13 @@ class MainWindow(wx.Frame):
   # Metodo para generar y carga de alojamiento
   def GenerarAlojamiento(self):
     # TA01
-    self.listadoAlojamiento.append(Alojamiento('Eco Cabaña', wx.Image('img/Cabana/Eco_Cabaña.png'), 'TA01'))
-    self.listadoAlojamiento.append(Alojamiento('Mirador del Virrey', wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA01'))
+    self.listadoAlojamiento.append(Alojamiento('Eco Cabaña', 'Cabaña', '10000 a 25000', 'Av. San Martín S/N', 3885108936, wx.Image('img/Cabana/Eco_Cabaña.png'), 'TA01'))
+    self.listadoAlojamiento.append(Alojamiento('Mirador del Virrey', 'Cabaña', '10000 a 25000', 'Ex Ruta 52 - KM 4,4 - Chalala', 3885904057, wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA01'))
     # TA02
-    self.listadoAlojamiento.append(Alojamiento('Camping Coquena', wx.Image('img/Cabana/Camping_Coquena.png'), 'TA02'))
-    self.listadoAlojamiento.append(Alojamiento('Cabañas y Camping Familiar Rodolfo', wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA02'))
-    self.listadoAlojamiento.append(Alojamiento('La Posada de Candelaria', wx.Image('img/Hostel/La_Posada_de_la_Candelaria.png'), 'TA02'))
-    self.listadoAlojamiento.append(Alojamiento('Pumac', wx.Image('img/Hostel/Pumac.png'), 'TA02'))
+    self.listadoAlojamiento.append(Alojamiento('Camping Coquena', 'Camping/Cabaña', '10000 a 25000', 'Av. San Martín S/N', 3885108936, wx.Image('img/Cabana/Camping_Coquena.png'), 'TA02'))
+    self.listadoAlojamiento.append(Alojamiento('Cabañas y Camping Familiar Rodolfo', 'Camping/Cabaña', '10000 a 25000', 'Ruta 52 S/N', 3884349307, wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA02'))
+    self.listadoAlojamiento.append(Alojamiento('La Posada de Candelaria', 'Hostal', '16000', 'Libertad S/N', 3885879786, wx.Image('img/Hostel/La_Posada_de_la_Candelaria.png'), 'TA02'))
+    self.listadoAlojamiento.append(Alojamiento('Pumac', 'Hostal', '20500', 'Pantaleón Cruz S/N', 3885089048, wx.Image('img/Hostel/Pumac.png'), 'TA02'))
     # TA03
     self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA03'))
     self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA03'))
