@@ -1,6 +1,6 @@
 import wx
 
-import src.view.wxAlojamiento as alojamiento
+import src.view.mainWindow as alojamiento
     
 # Definición principal de la aplicación
 if __name__ == '__main__':
