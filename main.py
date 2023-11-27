@@ -598,20 +598,15 @@ class MainWindow(wx.Frame):
     self.listadoAlojamiento.append(Alojamiento('Pumac', 'Hostal', '20500', 'Pantaleón Cruz S/N', 3885089048, wx.Image('img/Hostel/Pumac.png'), 'TA04'))
     self.listadoAlojamiento.append(Alojamiento('INTI KAY', 'Hostal', '10000 a 25000', 'Florida esq. Belgrano', 3884076204, wx.Image('img/Hostel/INTI_KAY.png'), 'TA04'))
     # TA05
-    self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA05'))
-    self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA05'))
-    self.listadoAlojamiento.append(Alojamiento('El Refugio de Noe', wx.Image('img/Hostel/El_Refugio_de_Noe.png'), 'TA05'))
+    self.listadoAlojamiento.append(Alojamiento('Mama Coca', 'Hostal', '10000 a 25000', 'Libertad S/N', 3884908434, wx.Image('img/Hostel/MamaCoca.png'), 'TA05'))
+    self.listadoAlojamiento.append(Alojamiento('Doña Velia', 'Hostal', '10000 a 25000', 'Florida S/N', 3884967488, wx.Image('img/Hostel/Doña_Velia.png'), 'TA05'))
+    self.listadoAlojamiento.append(Alojamiento('El Refugio de Noe', 'Hostal', '10000', 'Salta esq Gorriti', 3884803503, wx.Image('img/Hostel/El_Refugio_de_Noe.png'), 'TA05'))
     # TA06
-    self.listadoAlojamiento.append(Alojamiento('La Morada', wx.Image('img/Hostel/La_Morada.png'), 'TA06'))
-    self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA06'))
-    self.listadoAlojamiento.append(Alojamiento('El Rincón del Oso', wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA06'))
-    self.listadoAlojamiento.append(Alojamiento('El Poro', wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA06'))
-    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA06'))
-    self.listadoAlojamiento.append(Alojamiento('Huara Huasi', wx.Image('img/Hosteria/Huara_Huasi.png'), 'TA06'))
+    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', 'Hostería', '26000 a 60000', 'Av. San Martín S/N', 3884975583, wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA06'))
     # TA07
-    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA07'))
-    self.listadoAlojamiento.append(Alojamiento('La Pushka', wx.Image('img/Hosteria/La_Pushka.png'), 'TA07'))
-    self.listadoAlojamiento.append(Alojamiento('Wara Wara', wx.Image('img/Hosteria/Wara_Wara.png'), 'TA07'))
+    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', 'Hotel', '26000 a 60000', 'San Ramón Ote 1265', 569822092395, wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA07'))
+    self.listadoAlojamiento.append(Alojamiento('La Pushka', 'Hostería', '26000 a 60000', 'Pasaje Santa Rosa S/N', 3885170350, wx.Image('img/Hosteria/La_Pushka.png'), 'TA07'))
+    self.listadoAlojamiento.append(Alojamiento('Wara Wara', '26000 a 60000', 'Av. San Martín S/N', 3884780516, wx.Image('img/Hosteria/Wara_Wara.png'), 'TA07'))
     # TA08
     self.listadoAlojamiento.append(Alojamiento('Killari', wx.Image('img/Hotel/Hotel_Killari.png'), 'TA08'))
     # TA09
