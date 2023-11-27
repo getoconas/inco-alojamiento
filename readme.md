@@ -1,6 +1,6 @@
 # Sistema de Recomendación de Alojamiento
 
-Sistema de Recomendación de Alojamiento de la localidad de Purmamarca, realizado con Python Pyknow (Experta) y wxPyhyon
+Sistema de Recomendación de Alojamiento de la localidad de Purmamarca, realizado con Python Pyknow (Experta) y wxPython
 
 ## Primeros Pasos 
 
