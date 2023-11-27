@@ -627,24 +627,23 @@ class MainWindow(wx.Frame):
     self.listadoAlojamiento.append(Alojamiento('El Viejo Algarrobo', 'Hostería', '26000 a 60000', 'Salta S/N', 3884908286, wx.Image('img/Hosteria/El_Viejo_Algarrobo.png'), 'TA11'))
     self.listadoAlojamiento.append(Alojamiento('Del Amauta', 'Hostería', '26000 a 60000', 'Salta S/N', 3884908043, wx.Image('img/Hosteria/Del_Amauta.png'), 'TA11'))
     # TA12
-    self.listadoAlojamiento.append(Alojamiento('Terrazas de la Posta Purmamarca', wx.Image('img/Hosteria/Terraza_La_Posta.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Terrazas de la Posta', 'Hostería', '26000 a 60000', 'Pasaje Santa Rosa S/N', 3884571472, wx.Image('img/Hosteria/Terraza_La_Posta.png'), 'TA12'))
     # TA13
-    self.listadoAlojamiento.append(Alojamiento('Huara Huasi', wx.Image('img/Hosteria/Huara_Huasi.png'), 'TA13'))
+    self.listadoAlojamiento.append(Alojamiento('Huara Huasi', 'Hostería', '61000 a 100000', 'Ex Ruta 52 - KM 5 - Chalala', 3885811804, wx.Image('img/Hosteria/Huara_Huasi.png'), 'TA13'))
     # TA14
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA14'))
-    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA14'))
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA14'))
     # TA15
-    self.listadoAlojamiento.append(Alojamiento('El Manatial del Silencio', wx.Image('img/Hotel/El_Manantial_del_Silencio.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('La Comarca', wx.Image('img/Hotel/La_Comarca.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('Marquez de Tojo', wx.Image('img/Hotel/Marquez_de_Tojo.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca', wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA15'))
-    self.listadoAlojamiento.append(Alojamiento('El Refugio de Coquena', wx.Image('img/Hotel/El_Refugio_de_Coquena.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('El Manatial del Silencio', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884908081, wx.Image('img/Hotel/El_Manantial_del_Silencio.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('La Comarca', 'Hotel', '61000 a 100000', 'Ex RN 52 - KM 4.2', 3884908001, wx.Image('img/Hotel/La_Comarca.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('Marquez de Tojo', 'Hotel', '67000 a 100000', 'Santa Rosa 4', 3884116001, wx.Image('img/Hotel/Marquez_de_Tojo.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca','Hotel', '61000 a 100000', 'Pasaje Siete Colores S/N', 1155986605, wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('El Refugio de Coquena', 'Hotel', '61000 a 100000', 'Ex RN 52 - KM 3.4', 3884908025, wx.Image('img/Hotel/El_Refugio_de_Coquena.png'), 'TA15'))
     # TA16
-    self.listadoAlojamiento.append(Alojamiento('Los Colorados Cabañas Botique', wx.Image('img/Cabana/Los_Colorados.png'), 'TA16'))
-    self.listadoAlojamiento.append(Alojamiento('Azul Andino', wx.Image('img/Cabana/Azul_Andino.png'), 'TA16'))
-    self.listadoAlojamiento.append(Alojamiento('La Reliquia', wx.Image('img/Hotel/La_Reliquia.png'), 'TA16'))
+    self.listadoAlojamiento.append(Alojamiento('Los Colorados Cabañas Botique', 'Cabañas', '61000 a 100000', 'El Chapacal 511, Paseo de los Colorados', 3884908182, wx.Image('img/Cabana/Los_Colorados.png'), 'TA16'))
+    self.listadoAlojamiento.append(Alojamiento('Azul Andino', 'Cabañas', '61000 a 100000', 'Sarmiento S/N', 1132773021, wx.Image('img/Cabana/Azul_Andino.png'), 'TA16'))
+    self.listadoAlojamiento.append(Alojamiento('La Reliquia', 'Hotel', '61000 a 100000', 'Pantaleon Cruz S/N', 3884908120, wx.Image('img/Hotel/La_Reliquia.png'), 'TA16'))
     # TA17
-    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA17'))
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', 'Hotel', '61000 a 100000', 'Av. San Martín S/N', 3884088669, wx.Image('img/Hotel/Luna_Jatun.png'), 'TA17'))
     # TA18
     self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca', wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA18'))
     self.listadoAlojamiento.append(Alojamiento('El Cielo de Purmamarca', wx.Image('img/Hotel/El_Cielo_de_Purmamarca.png'), 'TA18'))
