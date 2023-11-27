@@ -44,11 +44,11 @@ class alojamiento_select(KnowledgeEngine):
     
   # Definición de reglas  
   # Turistas
-  @Rule (turistas(persona = 'PER1', presupuesto = 'PRB', estadia = 'EST1'))
+  @Rule (turistas(persona = 'PER2', presupuesto = 'PRB', estadia = 'EST1'))
   def turist1(self):
     self.declare(Fact(turist = 'TUR1'))
   
-  @Rule (turistas(persona = 'PER2', presupuesto = 'PRB', estadia = 'EST2'))
+  @Rule (turistas(persona = 'PER1', presupuesto = 'PRB', estadia = 'EST2'))
   def turist2(self):
     self.declare(Fact(turist = 'TUR2'))
 
@@ -146,7 +146,7 @@ class alojamiento_select(KnowledgeEngine):
   def print_alojamiento2(self):
     self.a_type = 'TA02'
 
-  @Rule (AND(Fact(turist = 'TUR1'), Fact(service = 'SER14'), Fact(alojamiento = 'TA03')))
+  @Rule (AND(Fact(turist = 'TUR3'), Fact(service = 'SER14'), Fact(alojamiento = 'TA03')))
   def print_alojamiento3(self):
     self.a_type = 'TA03'
 
@@ -285,11 +285,10 @@ class Servicio():
 
 # Definción de la clase alojamiento
 class Alojamiento():
-  def __init__(self, nombre, precio, tipo, imagen) -> None:
+  def __init__(self, nombre, imagen, tipo) -> None:
     self.nombre = nombre
-    self.precio = precio
-    self.tipo = tipo
     self.imagen = imagen
+    self.tipo = tipo
 
 # Pantalla de Inicio - Ingreso de Datos
 class InputPanel(wx.Panel):
@@ -409,12 +408,61 @@ class ResultPanel(wx.Panel):
   def __init__(self, parent):
     wx.Panel.__init__(self, parent = parent)
 
+    layout_main = wx.BoxSizer(wx.VERTICAL)
+    layout_child1 = wx.BoxSizer(wx.HORIZONTAL)
+    layout_child2 = wx.BoxSizer(wx.HORIZONTAL)
+
+    layout_child3 = wx.BoxSizer(wx.VERTICAL)
+    layout_child4 = wx.BoxSizer(wx.VERTICAL)
+    layout_child5 = wx.BoxSizer(wx.HORIZONTAL)
+
+    layout_child6 = wx.BoxSizer(wx.VERTICAL)
+
+    self.listadoRecomendacion = []
+
+    self.cbx_listado = wx.ComboBox(self, value = 'Alojamiento1')
+    self.cbx_listado.SetEditable(False)
+    self.cbx_listado.Bind(wx.EVT_TEXT, self.OnSelect)
+
+    layout_child1.Add(self.cbx_listado, 0, wx.ALL | wx.CENTER, 5)
+    layout_main.Add(layout_child1, 0, wx.ALL | wx.EXPAND, 5)
+
+    self.txt_result = wx.StaticText(self, label = 'Los alojamientos recomendados para usted son')
+
+    layout_child2.Add(self.txt_result, 0, wx.ALL | wx.CENTER, 5)
+    layout_main.Add(layout_child2, 0, wx.ALL | wx.EXPAND, 5)
+    
+    self.st_nombreAlojamiento = wx.StaticText(self, label = 'Nombre: ')
+    layout_child3.Add(self.st_nombreAlojamiento, 0, wx.LEFT, 5)
+    self.st_precioAlojamieno = wx.StaticText(self, label = 'Precio: ')
+    layout_child4.Add(self.st_precioAlojamieno, 0, wx.LEFT, 5)
+
+    layout_child5.Add(layout_child3, 1, wx.ALL | wx.EXPAND, 5)
+    layout_child5.Add(layout_child4, 1, wx.ALL | wx.EXPAND, 5)
+    layout_main.Add(layout_child5, 0, wx.ALL | wx.EXPAND, 5)
+
+    #self.st_direccionAlojamiento = wx.StaticText(self, label = 'Direccion ')
+    #self.st_telefonoAlojamiento = wx.StaticText(self, label = 'Telefono ')
+
+    self.imageBitmap = wx.StaticBitmap(self, wx.ID_ANY, wx.BitmapFromImage(wx.Image('img/Cabana/Azul_Andino.png', wx.BITMAP_TYPE_ANY)))
+
+    layout_child6.Add(self.imageBitmap, 0, wx.CENTER, 5)
+    layout_main.Add(layout_child6, 0, wx.ALL | wx.EXPAND, 5)
+
+    self.SetSizer(layout_main)
+
+  def OnSelect(self, event):
+    selected = self.cbx_listado.GetCurrentSelection()
+
+    self.imageBitmap.SetBitmap(wx.BitmapFromImage(self.listadoRecomendacion[selected].imagen))
+    self.st_nombreAlojamiento.SetLabel('Nombre: ' + self.listadoRecomendacion[selected].nombre)
 
 # Principal
 class MainWindow(wx.Frame):
   def __init__(self):
     super().__init__(parent = None, size = (500, 450), title = 'Inicio')
     self.listadoAlojamiento = []
+    self.GenerarAlojamiento()
     # Instancio la base de conocimiento
     self.alojamiento_recomendado = alojamiento_select()
 
@@ -438,7 +486,6 @@ class MainWindow(wx.Frame):
     self.sizer.Add(self.pnl_resultado, 1, wx.EXPAND)
     self.sizer.Add(self.btn_panel, 1, wx.EXPAND)
     self.SetSizer(self.sizer)
-
 
   # Metodo para cambiar de ventana
   def onSwitchPanels(self, event):
@@ -464,9 +511,19 @@ class MainWindow(wx.Frame):
       )
       self.alojamiento_recomendado.run()
       if (self.alojamiento_recomendado.a_type != None):
-        wx.MessageBox('Datos OK', self.alojamiento_recomendado.a_type)
+        #wx.MessageBox('Datos OK', self.alojamiento_recomendado.a_type)
+        self.DeterminarListaAlojamiento(self.alojamiento_recomendado.a_type)
+        if (len(self.pnl_resultado.listadoRecomendacion) == 0):
+          wx.MessageBox('No hay ningún alojamiento disponible')
+          return
+        self.CargarRecomendacion()
+        self.SetTitle('Resultado')
+        self.pnl_inicio.Hide()
+        self.pnl_resultado.Show()
+        self.btn_main.SetLabel('Volver')
+        self.SetSize(wx.Size(700, 500))
       else:
-        wx.MessageBox('Los datos ingresados no coinciden con ningún tipo de turista')
+        wx.MessageBox('Los datos ingresados no coinciden con ningún tipo de alojamiento')
     else:
       self.SetTitle('Inicio')
       self.pnl_resultado.Hide()
@@ -475,6 +532,24 @@ class MainWindow(wx.Frame):
       self.SetSize(wx.Size(500, 450))
     
     self.Layout()
+
+  # Filtra el alojamiento de acuerdo al tipo de las reglas definidas
+  def DeterminarListaAlojamiento(self, a_type):
+    self.pnl_resultado.listadoRecomendacion = []
+    for alo in self.listadoAlojamiento:
+      if (alo.tipo == a_type):
+        self.pnl_resultado.listadoRecomendacion.append(alo)
+
+  # 
+  def CargarRecomendacion(self):
+    self.pnl_resultado.cbx_listado.Clear()
+    
+    for alo in self.pnl_resultado.listadoRecomendacion:
+      self.pnl_resultado.cbx_listado.Append(alo.nombre)
+    self.pnl_resultado.cbx_listado.SetSelection(0)
+    self.pnl_resultado.OnSelect(event = wx.EVT_TEXT)
+    self.pnl_resultado.imageBitmap.SetBitmap(wx.BitmapFromImage(self.pnl_resultado.listadoRecomendacion[0].imagen))
+
 
   # Metodo para obtener los datos del turista ingresado
   def ObtenerTurista(self):
@@ -502,8 +577,85 @@ class MainWindow(wx.Frame):
     return ser
 
   # Metodo para generar y carga de alojamiento
-  #def GenerarAlojamiento(self):
-    
+  def GenerarAlojamiento(self):
+    # TA01
+    self.listadoAlojamiento.append(Alojamiento('Eco Cabaña', wx.Image('img/Cabana/Eco_Cabaña.png'), 'TA01'))
+    self.listadoAlojamiento.append(Alojamiento('Mirador del Virrey', wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA01'))
+    # TA02
+    self.listadoAlojamiento.append(Alojamiento('Camping Coquena', wx.Image('img/Cabana/Camping_Coquena.png'), 'TA02'))
+    self.listadoAlojamiento.append(Alojamiento('Cabañas y Camping Familiar Rodolfo', wx.Image('img/Cabana/Mirador_del_Virrey_Cabaña_Boutique.png'), 'TA02'))
+    self.listadoAlojamiento.append(Alojamiento('La Posada de Candelaria', wx.Image('img/Hostel/La_Posada_de_la_Candelaria.png'), 'TA02'))
+    self.listadoAlojamiento.append(Alojamiento('Pumac', wx.Image('img/Hostel/Pumac.png'), 'TA02'))
+    # TA03
+    self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA03'))
+    self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA03'))
+    self.listadoAlojamiento.append(Alojamiento('Posada El Molle', wx.Image('img/Hostel/Posada_el_Molle.png'), 'TA03'))
+    # TA04
+    self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA04'))
+    self.listadoAlojamiento.append(Alojamiento('El Rincón del Oso', wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA04'))
+    self.listadoAlojamiento.append(Alojamiento('Pumac', wx.Image('img/Hostel/Pumac.png'), 'TA04'))
+    self.listadoAlojamiento.append(Alojamiento('INTI KAY', wx.Image('img/Hostel/INTI_KAY.png'), 'TA04'))
+    # TA05
+    self.listadoAlojamiento.append(Alojamiento('Mama Coca', wx.Image('img/Hostel/MamaCoca.png'), 'TA05'))
+    self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA05'))
+    self.listadoAlojamiento.append(Alojamiento('El Refugio de Noe', wx.Image('img/Hostel/El_Refugio_de_Noe.png'), 'TA05'))
+    # TA06
+    self.listadoAlojamiento.append(Alojamiento('La Morada', wx.Image('img/Hostel/La_Morada.png'), 'TA06'))
+    self.listadoAlojamiento.append(Alojamiento('Doña Velia', wx.Image('img/Hostel/Doña_Velia.png'), 'TA06'))
+    self.listadoAlojamiento.append(Alojamiento('El Rincón del Oso', wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA06'))
+    self.listadoAlojamiento.append(Alojamiento('El Poro', wx.Image('img/Hostel/El_Rincon_del_Oso.png'), 'TA06'))
+    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA06'))
+    self.listadoAlojamiento.append(Alojamiento('Huara Huasi', wx.Image('img/Hosteria/Huara_Huasi.png'), 'TA06'))
+    # TA07
+    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA07'))
+    self.listadoAlojamiento.append(Alojamiento('La Pushka', wx.Image('img/Hosteria/La_Pushka.png'), 'TA07'))
+    self.listadoAlojamiento.append(Alojamiento('Wara Wara', wx.Image('img/Hosteria/Wara_Wara.png'), 'TA07'))
+    # TA08
+    self.listadoAlojamiento.append(Alojamiento('Killari', wx.Image('img/Hotel/Hotel_Killari.png'), 'TA08'))
+    # TA09
+    self.listadoAlojamiento.append(Alojamiento('Hotel Cactus Cerros', wx.Image('img/Hotel/Hotel_Cactus_Cerro.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('La Valentina', wx.Image('img/Hotel/La_Valentina.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('Las Lavandas Purmamarca', wx.Image('img/Hotel/Las_Lavandas_Purmamarca.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('MAI JAII', wx.Image('img/Hotel/MAI_JAII.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('La Casa Encantanda', wx.Image('img/Hosteria/La_Casa_Encantada.png'), 'TA09'))
+    self.listadoAlojamiento.append(Alojamiento('La Pushka', wx.Image('img/Hosteria/La_Pushka.png'), 'TA09'))
+    # TA10
+    self.listadoAlojamiento.append(Alojamiento('Nido de Cóndores', wx.Image('img/Hotel/Nido_de_Condores.png'), 'TA10'))
+    # TA11
+    self.listadoAlojamiento.append(Alojamiento('Los Agustinos', wx.Image('img/Hotel/Los_Agustinos.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Tierra Virgen Apartaments', wx.Image('img/Hotel/Tierra_Virgen.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Las Vicuñas', wx.Image('img/Hotel/Las_Vicuñas.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('El Viejo Algarrobo', wx.Image('img/Hosteria/El_Viejo_Algarrobo.png'), 'TA11'))
+    self.listadoAlojamiento.append(Alojamiento('Del Amauta', wx.Image('img/Hosteria/Del_Amauta.png'), 'TA11'))
+    # TA12
+    self.listadoAlojamiento.append(Alojamiento('Terrazas de la Posta Purmamarca', wx.Image('img/Hosteria/Terraza_La_Posta.png'), 'TA11'))
+    # TA13
+    self.listadoAlojamiento.append(Alojamiento('Huara Huasi', wx.Image('img/Hosteria/Huara_Huasi.png'), 'TA13'))
+    # TA14
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA14'))
+    self.listadoAlojamiento.append(Alojamiento('Aguas Coloradas', wx.Image('img/Hosteria/Aguas_Coloradas.png'), 'TA14'))
+    # TA15
+    self.listadoAlojamiento.append(Alojamiento('El Manatial del Silencio', wx.Image('img/Hotel/El_Manantial_del_Silencio.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('La Comarca', wx.Image('img/Hotel/La_Comarca.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('Marquez de Tojo', wx.Image('img/Hotel/Marquez_de_Tojo.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca', wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA15'))
+    self.listadoAlojamiento.append(Alojamiento('El Refugio de Coquena', wx.Image('img/Hotel/El_Refugio_de_Coquena.png'), 'TA15'))
+    # TA16
+    self.listadoAlojamiento.append(Alojamiento('Los Colorados Cabañas Botique', wx.Image('img/Cabana/Los_Colorados.png'), 'TA16'))
+    self.listadoAlojamiento.append(Alojamiento('Azul Andino', wx.Image('img/Cabana/Azul_Andino.png'), 'TA16'))
+    self.listadoAlojamiento.append(Alojamiento('La Reliquia', wx.Image('img/Hotel/La_Reliquia.png'), 'TA16'))
+    # TA17
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA17'))
+    # TA18
+    self.listadoAlojamiento.append(Alojamiento('Colores de Purmamarca', wx.Image('img/Hotel/Colores_de_Purmamarca.png'), 'TA18'))
+    self.listadoAlojamiento.append(Alojamiento('El Cielo de Purmamarca', wx.Image('img/Hotel/El_Cielo_de_Purmamarca.png'), 'TA18'))
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA18'))
+    # TA19
+    self.listadoAlojamiento.append(Alojamiento('La Comarca', wx.Image('img/Hotel/La_Comarca.png'), 'TA19'))
+    self.listadoAlojamiento.append(Alojamiento('Luna Jatun', wx.Image('img/Hotel/Luna_Jatun.png'), 'TA19'))
+    self.listadoAlojamiento.append(Alojamiento('Pumahuasi Hotel Boutique', wx.Image('img/Hotel/Pumahuasi_Hotel_Boutique.png'), 'TA19'))
 
 # Definición principal de la aplicación
 if __name__ == '__main__':
@@ -512,3 +664,5 @@ if __name__ == '__main__':
   frame = MainWindow()
   frame.Show()
   app.MainLoop()
+
+# TOCONAS, GASTON ENZO - GRUPO 10 - INCO
