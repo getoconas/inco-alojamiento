@@ -25,6 +25,14 @@ Una vez instaladas las librerías necesarias se puede proceder a ejecutar la apl
 python main.py
 ```
 
-Listo para usar !
+## Capturas de Pantalla
+
+### Panel de Busqueda
+
+<img src="./img/assets/panelInput.png" alt="" width="500"/>
+
+### Panel de Resultado
+
+<img src="./img/assets/panelResult.png" alt="" width="500"/>
 
 Grupo 10 - Ingeniería de Conocimiento - Facultad de Ingenería UNJu
