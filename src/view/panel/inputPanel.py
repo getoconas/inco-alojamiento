@@ -33,27 +33,32 @@ class InputPanel(wx.Panel):
 
     # Cantidad de personas
     self.txt_per = wx.StaticText(self, label = 'Cantidad de personas', style = wx.ALIGN_LEFT)
-    self.spn_per = wx.SpinCtrl(self, value = '1')
+    personas = ["1 a 2 personas", "3 a 4 personas", "+ de 4 personas"]
+    self.cbx_personas = wx.ComboBox(self, choices = personas)
+    self.cbx_personas.SetEditable(False)
 
     layout_child1.Add(self.txt_per, 0, wx.LEFT, 5)
-    layout_child1.Add(self.spn_per, 0, wx.ALL | wx.EXPAND, 5)
+    layout_child1.Add(self.cbx_personas, 0, wx.ALL | wx.EXPAND, 5)
     layout_main.Add(layout_child1, 0, wx.ALL | wx.EXPAND, 5)
 
     # Presupuesto
     self.txt_pre = wx.StaticText(self, label = 'Presupuesto', style = wx.ALIGN_LEFT)
-    self.spn_pre = wx.SpinCtrl(self, value = '10000')
-    self.spn_pre.SetRange(5000, 150000)
+    presupuesto = ["10.000 a 25.000", "25.001 a 60.000", "60.001 a 100.000"]
+    self.cbx_presupuesto = wx.ComboBox(self, choices = presupuesto)
+    self.cbx_presupuesto.SetEditable(False)
 
     layout_child2.Add(self.txt_pre, 0, wx.LEFT, 5)
-    layout_child2.Add(self.spn_pre, 0, wx.ALL | wx.EXPAND, 5)
+    layout_child2.Add(self.cbx_presupuesto, 0, wx.ALL | wx.EXPAND, 5)
     layout_main.Add(layout_child2, 0, wx.ALL | wx.EXPAND, 5)
 
     # Tiempo de estadía
     self.txt_est = wx.StaticText(self, label = 'Tiempo de Estadía', style = wx.ALIGN_LEFT)
-    self.spn_est = wx.SpinCtrl(self, value = '1')
+    estadia = ["1 a 4 días", "5 a 12 días", "+ de 12 días"]
+    self.cbx_estadia = wx.ComboBox(self, choices = estadia)
+    self.cbx_estadia.SetEditable(False)
 
     layout_child3.Add(self.txt_est, 0, wx.LEFT, 5)
-    layout_child3.Add(self.spn_est, 0, wx.ALL | wx.EXPAND, 5)
+    layout_child3.Add(self.cbx_estadia, 0, wx.ALL | wx.EXPAND, 5)
     layout_main.Add(layout_child3, 0, wx.ALL | wx.EXPAND, 5)
 
     # Checkbox BPW - EST

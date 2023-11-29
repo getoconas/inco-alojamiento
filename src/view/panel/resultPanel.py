@@ -28,7 +28,7 @@ class ResultPanel(wx.Panel):
     self.cbx_listado.SetEditable(False)
     self.cbx_listado.Bind(wx.EVT_TEXT, self.OnSelect)
 
-    layout_child1.Add(self.cbx_listado, 0, wx.CENTER, 5)
+    layout_child1.Add(self.cbx_listado, 0, wx.ALL | wx.CENTER, 5)
     layout_main.Add(layout_child1, 0, wx.ALL | wx.EXPAND, 5)
 
     self.txt_result = wx.StaticText(self, label = 'Los alojamientos recomendados para usted son')
@@ -70,7 +70,7 @@ class ResultPanel(wx.Panel):
     selected = self.cbx_listado.GetCurrentSelection()
     self.st_nombreAlojamiento.SetLabel('Nombre: ' + self.listadoRecomendacion[selected].nombre)
     self.st_categoriaAlojamiento.SetLabel('Categoria: ' + self.listadoRecomendacion[selected].categoria)
-    self.st_precioAlojamiento.SetLabel('Precio: ' + self.listadoRecomendacion[selected].precio)
+    self.st_precioAlojamiento.SetLabel('Precio: ' + str(self.listadoRecomendacion[selected].precio))
     self.st_direccionAlojamiento.SetLabel('Dirección: ' + self.listadoRecomendacion[selected].direccion)
     self.st_telefonoAlojamiento.SetLabel('Telefono: ' + str(self.listadoRecomendacion[selected].telefono))
     self.imageBitmap.SetBitmap(wx.BitmapFromImage(self.listadoRecomendacion[selected].imagen))

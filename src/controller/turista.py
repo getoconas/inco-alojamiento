@@ -2,23 +2,23 @@
 class Turista():
   def __init__(self, persona, presupuesto, estadia) -> None:
     
-    if (persona >= 1 and persona <= 2):
+    if (persona == 0):
       self.persona = 'PER1'
-    if (persona >= 3 and persona <= 4):
+    elif (persona == 1):
       self.persona = 'PER2'
-    if (persona >= 5):
+    else:
       self.persona = 'PER3'
     
-    if (presupuesto >= 10000 and presupuesto <= 25000):
+    if (presupuesto == 0):
       self.presupuesto = 'PRB'
-    if (presupuesto >= 25001 and presupuesto <= 60000):
+    elif (presupuesto == 1):
       self.presupuesto = 'PRM'
-    if (presupuesto >= 60001 and presupuesto <= 100000):
+    else:
       self.presupuesto = 'PRA'
 
-    if (estadia >= 1 and estadia <= 4):
+    if (estadia == 0):
       self.estadia = 'EST1'
-    if (estadia >= 5 and estadia <= 12):
+    elif (estadia == 1):
       self.estadia = 'EST2'
-    if (estadia > 12):
+    else:
       self.estadia = 'EST3'

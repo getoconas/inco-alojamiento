@@ -101,10 +101,10 @@ class MainWindow(wx.Frame):
 
   # Metodo para obtener los datos del turista ingresado
   def ObtenerTurista(self):
-    per_pnl = self.pnl_inicio.spn_per.GetValue()
-    pre_pnl = self.pnl_inicio.spn_pre.GetValue()
-    est_pnl = self.pnl_inicio.spn_est.GetValue()
-
+    per_pnl = self.pnl_inicio.cbx_personas.GetSelection()
+    pre_pnl = self.pnl_inicio.cbx_presupuesto.GetSelection()
+    est_pnl = self.pnl_inicio.cbx_estadia.GetSelection()
+    
     tur = turista.Turista(per_pnl, pre_pnl, est_pnl)
     return tur
   
