@@ -2,6 +2,7 @@
 
 ## 📜 Descripción
 Sistema de Recomendación de Alojamiento de la localidad de Purmamarca, realizado con Python Pyknow (Experta) y wxPython. Esta aplicación permite analizar los requerimientos que prefieren los turistas para su estadía de dicha localidad.
+
 En la interfaz de inicio se pregunta la cantidad de personas, el presupuesto disponible y la cantidad de días que se piensan quedar, también tiene un apartado para seleccionar los servicios preferibles para su alojamiento. A partir de esta información, el sistema selecciona lo más acorde de acuerdo a las reglas implementadas.
 
 ## 🚀 Primeros Pasos 
@@ -17,6 +18,11 @@ Antes de ejecutar la aplicación se deben instalar las siguientes librerías
 ```
 python -m pip install experta
 python -m pip install -U wxPython
+```
+
+Una vez instaladas las librerías necesarias se puede proceder a ejecutar la aplicacion
+```
+python main.py
 ```
 
 Listo para usar !
