@@ -42,7 +42,7 @@ class InputPanel(wx.Panel):
     layout_main.Add(layout_child1, 0, wx.ALL | wx.EXPAND, 5)
 
     # Presupuesto
-    self.txt_pre = wx.StaticText(self, label = 'Presupuesto', style = wx.ALIGN_LEFT)
+    self.txt_pre = wx.StaticText(self, label = 'Presupuesto por día', style = wx.ALIGN_LEFT)
     presupuesto = ["10.000 a 25.000", "25.001 a 60.000", "60.001 a 100.000"]
     self.cbx_presupuesto = wx.ComboBox(self, choices = presupuesto)
     self.cbx_presupuesto.SetEditable(False)

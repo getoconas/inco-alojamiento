@@ -25,7 +25,7 @@ Una vez instaladas las librerías necesarias se puede proceder a ejecutar la apl
 python main.py
 ```
 
-## Capturas de Pantalla
+## 📸 Capturas de Pantalla
 
 ### Panel de Busqueda
 
@@ -35,4 +35,4 @@ python main.py
 
 <img src="./img/assets/panelResult.png" alt="" width="500"/>
 
-Grupo 10 - Ingeniería de Conocimiento - Facultad de Ingenería UNJu
+💡 Grupo 10 - Ingeniería de Conocimiento - Facultad de Ingenería UNJu
