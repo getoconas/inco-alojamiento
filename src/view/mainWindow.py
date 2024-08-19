@@ -122,5 +122,6 @@ class MainWindow(wx.Frame):
     mat_cbx = self.pnl_inicio.cbx_mat.IsChecked()
     ser_cbx = self.pnl_inicio.cbx_ser.IsChecked()
 
-    ser = servicio.Servicio(bpw_cbx, est_cbx, mas_cbx, erl_cbx, ing_cbx, pis_cbx, tar_cbx, dis_cbx, mat_cbx, ser_cbx)
-    return ser
+    return servicio.Servicio.from_flags(bpw_cbx, est_cbx, mas_cbx, erl_cbx, ing_cbx, pis_cbx, tar_cbx, dis_cbx, mat_cbx, ser_cbx)
+    #ser = servicio.Servicio(bpw_cbx, est_cbx, mas_cbx, erl_cbx, ing_cbx, pis_cbx, tar_cbx, dis_cbx, mat_cbx, ser_cbx)
+    #return ser
