@@ -1,43 +1,30 @@
 # Definición de la clase servicio
-class Servicio():
-  def __init__(self, bpw, est, mas, erl, ing, pis, tar, dis, mat, ser) -> None:
-    if (bpw):
-      self.bpw = 'BPW'
-    else:
-      self.bpw = None
-    if (est):
-      self.est = 'EST'
-    else:
-      self.est = None
-    if (mas):
-      self.mas = 'MAS'
-    else:
-      self.mas = None
-    if (erl):
-      self.erl = 'ERL'
-    else:
-      self.erl = None
-    if (ing):
-      self.ing = 'ING'
-    else:
-      self.ing = None
-    if (pis):
-      self.pis = 'PIS'
-    else:
-      self.pis = None
-    if (tar):
-      self.tar = 'TAR'
-    else:
-      self.tar = None
-    if (dis):
-      self.dis = 'DIS'
-    else:
-      self.dis = None
-    if (mat):
-      self.mat = 'MAT'
-    else:
-      self.mat = None
-    if (ser):
-      self.ser = 'SER'
-    else:
-      self.ser = None
+from dataclasses import dataclass
+
+@dataclass
+class Servicio:
+  bpw: str = None
+  est: str = None
+  mas: str = None
+  erl: str = None
+  ing: str = None
+  pis: str = None
+  tar: str = None
+  dis: str = None
+  mat: str = None
+  ser: str = None
+
+  @classmethod
+  def from_flags(cls, bpw=False, est=False, mas=False, erl=False, ing=False, pis=False, tar=False, dis=False, mat=False, ser=False):
+    return cls(
+      bpw='BPW' if bpw else None,
+      est='EST' if est else None,
+      mas='MAS' if mas else None,
+      erl='ERL' if erl else None,
+      ing='ING' if ing else None,
+      pis='PIS' if pis else None,
+      tar='TAR' if tar else None,
+      dis='DIS' if dis else None,
+      mat='MAT' if mat else None,
+      ser='SER' if ser else None
+    )
