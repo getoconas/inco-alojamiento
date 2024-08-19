@@ -1,9 +1,13 @@
 # Sistema de Recomendación de Alojamiento
 
 ## 📜 Descripción
-Sistema de Recomendación de Alojamiento de la localidad de Purmamarca, realizado con Python Pyknow (Experta) y wxPython. Esta aplicación permite analizar los requerimientos que prefieren los turistas para su estadía de dicha localidad.
+Sistema de Recomendación de Alojamiento en la localidad de Purmamarca, provincia de Jujuy. Realizado con Python Pyknow (Experta) y wxPython. Esta aplicación permite analizar los requerimientos que prefieren los turistas para su estadía de dicha localidad.
 
 En la interfaz de inicio se pregunta la cantidad de personas, el presupuesto disponible y la cantidad de días que se piensan quedar, también tiene un apartado para seleccionar los servicios preferibles para su alojamiento. A partir de esta información, el sistema selecciona lo más acorde de acuerdo a las reglas implementadas.
+
+## ⚠ Información Importante
+En el caso de que no se entienda cierta parte del código, se puede consultar la versión presentada en el trabajo final
+https://github.com/getoconas/sbc-alojamiento
 
 ## 🚀 Primeros Pasos 
 
