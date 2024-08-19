@@ -105,8 +105,9 @@ class MainWindow(wx.Frame):
     pre_pnl = self.pnl_inicio.cbx_presupuesto.GetSelection()
     est_pnl = self.pnl_inicio.cbx_estadia.GetSelection()
     
-    tur = turista.Turista(per_pnl, pre_pnl, est_pnl)
-    return tur
+    return turista.Turista.from_selections(per_pnl, pre_pnl, est_pnl)
+    #tur = turista.Turista(per_pnl, pre_pnl, est_pnl)
+    #return tur
   
   # Metodo para obtener los servicios seleccionados
   def ObtenerServico(self):
